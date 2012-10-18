@@ -1,0 +1,11 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      = link_to 'My Class Too', '#', :class => 'brand'
+      %ul.nav.pull-right
+        - if signed_in?
+          / %li= link_to 'Sign-in with Facebook', user_omniauth_authorize_path(:facebook)
+          %li.navbar-text= current_user.first_name
+          %li= link_to 'Sign out', destroy_user_session_path, :method => :delete
+        - else 
+          %li= link_to 'Sign-in with Facebook', 'users/auth/facebook'
