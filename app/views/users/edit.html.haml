@@ -1,0 +1,9 @@
+= simple_form_for current_user, :class => 'form-horizontal' do |f|
+  
+  = f.input :first_name
+  = f.input :last_name
+  = f.association :college
+
+  .form-controls
+    = f.submit 'Update', :class => 'btn btn-primary'
+    = link_to 'Cancel', request.referer, :class => 'btn'

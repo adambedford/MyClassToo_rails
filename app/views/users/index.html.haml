@@ -1,0 +1,22 @@
+/ %p= current_user.first_name
+/ - current_user.facebook.friends.each do |friend|
+/   %p= link_to friend.name, friend.fetch.link, :class => 'btn'
+
+.span3
+  .well
+    %h4= current_user.first_name + ' ' + current_user.last_name
+    %ul.nav.nav-list
+      %li
+        =link_to root_path do
+          %i.icon-home
+          Home
+      %li
+        = link_to edit_user_path(current_user) do
+          %i.icon-cog
+          Edit Account
+.span9
+  - current_user.facebook_friends.each do |friend|
+    %p
+      = image_tag(friend[:pic_square])
+      = link_to friend[:first_name], friend[:profile_url]
+

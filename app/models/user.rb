@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
   end
 
+  def facebook_friends
+    @fb_friends ||= FbGraph::Query.new("SELECT uid, first_name, last_name, pic_square, profile_url FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1='#{self.authentications.find_by_provider('facebook').uid}')").fetch(self.authentications.find_by_provider('facebook').token)
+  end
+
 
   protected
 

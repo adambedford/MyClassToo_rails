@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006072723) do
+ActiveRecord::Schema.define(:version => 20121023003708) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20121006072723) do
     t.date     "dob"
     t.string   "email"
     t.string   "gender"
-    t.integer  "colleges_id"
+    t.integer  "college_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "encrypted_password",     :default => "", :null => false

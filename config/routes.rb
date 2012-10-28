@@ -1,7 +1,7 @@
 MyClassTooRails::Application.routes.draw do
 
   authenticated :user do
-    root :to => 'users#account'
+    root :to => 'users#index'
   end
 
   root :to => 'home#index'
@@ -10,13 +10,16 @@ MyClassTooRails::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
 
-  devise_scope :user do
-    get 'logout', :to => 'devise/sessions#destroy'
-    get 'login', :to => 'devise/sessions#new'
-  end
+  # devise_scope :user do
+  #   get 'logout', :to => 'devise/sessions#destroy'
+  #   get 'login', :to => 'devise/sessions#new'
+  # end
   
-  resources :users
-  match 'account' => 'users#account'
+  resources :users do
+    resource :schedule
+  end
+  # resources :users
+  # match 'account' => 'users#account'
 
   resources :authentications
 

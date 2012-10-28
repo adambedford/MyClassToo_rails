@@ -1,11 +1,23 @@
-.navbar.navbar-fixed-top
+.navbar.navbar-fixed-top.navbar-inverse
   .navbar-inner
     .container
-      = link_to 'My Class Too', '#', :class => 'brand'
+      = link_to 'My Class Too', '#', class: 'brand'
+      %ul.nav
+        %li.divider-vertical
+        %li
+          = link_to '#' do
+            %i.icon-envelope{style: 'color:red'}
       %ul.nav.pull-right
         - if signed_in?
           / %li= link_to 'Sign-in with Facebook', user_omniauth_authorize_path(:facebook)
-          %li.navbar-text= current_user.first_name
+          %li.dropdown
+            =link_to '#', {data: {toggle: 'dropdown'}} do
+              / %img{:src => current_user.facebook.picture}
+              =current_user.first_name
+              %i.icon-caret-down
+            %ul.dropdown-menu
+              %li= link_to 'Home', root_path
+              %li= link_to 'Account Settings', edit_user_path(current_user)
           %li= link_to 'Sign out', destroy_user_session_path, :method => :delete
         - else 
           %li= link_to 'Sign-in with Facebook', 'users/auth/facebook'
